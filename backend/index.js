@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,6 +16,7 @@ connectDB(process.env.MONGO_URI).then(() => {
   console.log("Connected to MongoDB");
 });
 
+console.log("MONGO_URI:", process.env.MONGO_URI);
 
 app.get("/health", (req, res) => {
   res.json({ status: "Backend is running" });
